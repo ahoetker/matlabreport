@@ -7,10 +7,11 @@ setup(name='matlabreport',
       author_email='ahoetker@me.com',
       install_requires=[
           'Click',
+          'pyaml'
       ],
       entry_points='''
         [console_scripts]
-        matlabreport=matlabreport.scripts.matlabreport:matlabreport    
+        matlabreport=matlabreport.scripts.matlabreport:matlabreport
       ''',
       packages=find_packages(),
       zip_safe=False)
