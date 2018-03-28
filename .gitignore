@@ -10,3 +10,6 @@
 
 # PyCharm files
 /.idea/
+
+# Byte-compiled files
+*/__pycache__/
