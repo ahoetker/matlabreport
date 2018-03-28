@@ -42,15 +42,20 @@ def makeReport(yaml_file, output_file, funcs):
 
     functions = ""
     if funcs is True:
-        functions += "%% Referenced Functions \n"
-        for func in outline.functions:
-            with open(func, 'r') as f:
-                comment = "%% {}\n%\n".format(func)
-                for line in f:
-                    comment += ( "%   " + str(line))
-            functions += comment + "\n\n"
+        try:
+            functions += "%% Referenced Functions \n"
+            for func in outline.functions:
+                with open(func, 'r') as f:
+                    comment = "%% {}\n%\n".format(func)
+                    for line in f:
+                        comment += ( "%   " + str(line))
+                functions += comment + "\n\n"
+        except TypeError:
+            print("No functions specified in {}".format(yaml_file))
 
     report = header + problems + functions
 
     with open(output_file, 'w') as f:
         f.write(report)
+
+    print("Report saved as m-file")
