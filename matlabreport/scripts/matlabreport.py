@@ -16,15 +16,7 @@ from matlabreport.publishmfile import publishMfile
 
 def matlabreport(outline, report_m, pubformat, funcs, p, t, v):
     """
-
-    :param outline: outline file in yaml format
-    :param report_m: combined report m-file
-    :param pubformat: publication format
-    :param funcs: flag to include user functions
-    :param p: flag for publication
-    :param t: flag to typeset with pdflatex
-    :param v: flag for verbose pdflatex output
-    :return: None
+    Make a MATLAB report m-file, and optionally publish it.
     """
 
     makeReport(outline, report_m, funcs)
