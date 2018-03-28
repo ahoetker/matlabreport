@@ -3,6 +3,7 @@ from setuptools import setup, find_packages
 setup(name='matlabreport',
       version='0.1',
       description='Make and publish MATLAB reports.',
+      url='https://github.com/ahoetker/matlabreport',
       author='Andrew Hoetker',
       author_email='ahoetker@me.com',
       install_requires=[
