@@ -7,7 +7,7 @@ from matlabreport.publishmfile import publishMfile
 @click.command()
 @click.argument('outline', type=click.Path(exists=True, resolve_path=True))
 @click.argument('report_m', type=click.Path(resolve_path=True))
-@click.argument('pubformat')
+@click.option('--pubformat', default='html')
 @click.option('--funcs', is_flag=True, help="Append user functions.")
 @click.option('-p', is_flag=True, help="Publish report after building.")
 @click.option('-t', is_flag=True, help="Use pdflatex to typeset report.")
