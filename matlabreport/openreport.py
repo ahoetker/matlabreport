@@ -2,7 +2,7 @@
 
 import os
 import webbrowser
-from subprocess import Popen
+from subprocess import Popen, call
 
 
 def openReport(report):
@@ -41,10 +41,11 @@ def openPDF(report):
     to webbrowser module.
     """
     pdf_viewer = os.getenv("PDFVIEWER")
+    devnull = open(os.devnull, 'w')
 
     if pdf_viewer != None:
         try:
-            Popen([pdf_viewer, report])
+            Popen([pdf_viewer, report], stderr=devnull, stdout=devnull)
         except FileNotFoundError:
             webbrowser.open('file://' + report)
     else:
