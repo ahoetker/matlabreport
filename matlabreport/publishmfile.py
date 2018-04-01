@@ -15,14 +15,14 @@ def publishMfile(mfile, pubformat, t, v):
     eng = startEngine()
     eng.cd(wd)
     print("Publishing {} with format {}...".format(mfilename, pubformat))
-    eng.publish(mfile, pubformat)
+    published_report = eng.publish(mfile, pubformat)
     eng.quit()
     print("Publishing complete")
 
     if pubformat == "latex" and t is True:
-        filename = os.path.splitext(os.path.split(mfile)[1])[0] + ".tex"
-        texfile = os.path.join(wd, "html", filename)
-        typeset(texfile, v)
+        published_report = typeset(published_report, v)
+
+    return published_report
 
 
 def startEngine():
@@ -47,3 +47,5 @@ def typeset(texfile, v):
         subprocess.call(['pdflatex', texfile], shell=False, stdout=devnull)
 
     print("Typesetting complete (pdflatex)")
+    output_pdf = os.path.join(os.path.splitext(texfile)[0] + '.pdf')
+    return output_pdf
