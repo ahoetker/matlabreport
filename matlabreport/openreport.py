@@ -1,7 +1,6 @@
 # openreport.py - open the published report for viewing
 
 import os
-from sys import platform
 import webbrowser
 from subprocess import Popen
 
@@ -34,8 +33,9 @@ def openHTML(report):
 def openPDF(report):
     """
     Open report.pdf using /env/PDFVIEWER .
-    If PDFVIEWER is not defined, macOS will use Preview.app
-    Other platforms will fall back to the webbrowser module.
+
+    If PDFVIEWER is not defined, or cannot be called, falls back
+    to webbrowser module.
     """
     pdf_viewer = os.getenv("PDFVIEWER")
 
@@ -43,13 +43,6 @@ def openPDF(report):
         try:
             Popen([pdf_viewer, report])
         except FileNotFoundError:
-            fallbackPDF(report)
-    else:
-        fallbackPDF(report)
-
-
-def fallbackPDF(report):
-    if platform == 'darwin':
-        Popen(['open', '-a', 'Preview.app', report])
+            webbrowser.open('file://' + report)
     else:
         webbrowser.open('file://' + report)
