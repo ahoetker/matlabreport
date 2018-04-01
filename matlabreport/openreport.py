@@ -12,7 +12,6 @@ def openReport(report):
 
     Please use these environment variables, otherwise defaults
     will be used:
-        BROWSER
         PDFVIEWER
         EDITOR
     """
@@ -22,6 +21,10 @@ def openReport(report):
         openHTML(report)
     elif file_ext == '.pdf':
         openPDF(report)
+    elif file_ext == '.xml':
+        openXML(report)
+    elif file_ext == '.tex':
+        openTEX(report)
     else:
         print("Unsupported filetype: {}".format(file_ext))
 
@@ -46,3 +49,23 @@ def openPDF(report):
             webbrowser.open('file://' + report)
     else:
         webbrowser.open('file://' + report)
+
+
+def openXML(report):
+    editor = os.getenv("EDITOR")
+
+    if editor != None:
+        try:
+            Popen([editor, report])
+        except FileNotFoundError:
+            webbrowser.open('file://' + report)
+    else:
+        webbrowser.open('file://' + report)
+
+def openTEX(report):
+    editor = os.getenv("EDITOR")
+
+    if editor != None:
+        Popen([editor, report])
+    else:
+        print("/env/EDITOR not defined, LaTeX cannot be displayed.")
