@@ -1,0 +1,15 @@
+!Outline
+header:
+  - header.m
+problems:
+  - problem_14_3.m
+  - problem_14_8.m
+  - problem_14_13.m
+  - problem_15_4.m
+  - problem_15_11.m
+  - problem_15_22.m
+functions:
+  - fSSR_15_11.m
+  - fSSR_15_22.m
+  - linregr.m
+  - polyreg.m
