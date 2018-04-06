@@ -3,6 +3,7 @@
 import os
 import webbrowser
 from subprocess import Popen, call
+import time
 
 
 def openReport(report):
@@ -35,13 +36,17 @@ def openHTML(report):
 
 def openPDF(report):
     """
-    Open report.pdf using /env/PDFVIEWER .
+    Open report.pdf using /env/PDFVIEWER
 
     If PDFVIEWER is not defined, or cannot be called, falls back
     to webbrowser module.
+    Includes a 2-second sleep because pdflatex can take a while to
+    finish writing to the pdf file.
     """
     pdf_viewer = os.getenv("PDFVIEWER")
     devnull = open(os.devnull, 'w')
+
+    time.sleep(2)
 
     if pdf_viewer != None:
         try:
