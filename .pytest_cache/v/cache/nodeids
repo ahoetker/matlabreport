@@ -1,4 +1,3 @@
 [
-  "tests/test_example.py::test_concat",
-  "tests/matlabreport/test_makereport.py::test_makereport"
+  "tests/test_makereport.py::test_makereport"
 ]
