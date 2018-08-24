@@ -1,4 +1,5 @@
 # matlabreport
+[![Build Status](https://travis-ci.org/ahoetker/matlabreport.svg?branch=master)](https://travis-ci.org/ahoetker/matlabreport)
 Python package to automate the creation and publication of MATLAB reports.
 
 ## Usage
