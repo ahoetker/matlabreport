@@ -1,7 +1,6 @@
 # Compiled python modules.
 *.pyc
 
-
 # Setuptools distribution folder
 /dist/
 
@@ -13,3 +12,10 @@
 
 # Byte-compiled files
 */__pycache__/
+
+# macOS binary records
+.DS_Store
+
+# caches
+/.cache/
+/.pytest_cache/
