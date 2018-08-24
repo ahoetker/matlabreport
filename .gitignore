@@ -15,3 +15,7 @@
 
 # macOS binary records
 .DS_Store
+
+# caches
+/.cache/
+/.pytest_cache/
