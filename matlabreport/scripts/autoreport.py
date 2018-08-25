@@ -27,6 +27,3 @@ def autoreport(pubformat, funcs, p, t, v, s):
 
         if s is True:
             openReport(published_report)
-
-    os.remove(outline)
-    os.remove(report_m)
