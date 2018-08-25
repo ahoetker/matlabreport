@@ -74,7 +74,7 @@ def auto_outline(generated_outline):
     :return:
     """
     mfiles = [f for f in os.listdir() if os.path.splitext(f)[1] == ".m"]
-    header = ["header.m"]
+    header = sorted([f for f in mfiles if "header" in f])
     problems = sorted([f for f in mfiles if "problem" in f])
     all_functions = list(filter(lambda f: f not in set(problems), mfiles))
 
