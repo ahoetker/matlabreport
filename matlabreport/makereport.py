@@ -61,3 +61,13 @@ def makeReport(yaml_file, output_file, funcs):
         f.write(report)
 
     print("Report saved as m-file")
+
+
+def auto_outline(generated_outline):
+    """
+    Create the outline.yml file needed to make a report.
+    TODO: actually write this function
+    :param generated_outline: the outline.yml file to be created
+    :return:
+    """
+    return None
