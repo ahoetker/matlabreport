@@ -1,7 +1,8 @@
 import pytest
 import os
 import pkg_resources
-from matlabreport.makereport import makeReport, auto_outline
+import yaml
+from matlabreport.makereport import Outline, makeReport, auto_outline
 
 # define the resources directory
 resources = pkg_resources.resource_filename("tests", "resources")
@@ -33,7 +34,9 @@ def test_auto_outline():
     generated_outline = os.path.join(resources, "generated_outline.yml")
     os.chdir(resources)
     auto_outline(generated_outline)
-    with open(generated_outline, "r") as f1:
-        with open(os.path.join(resources, "dummy_outline.yml")) as f2:
-            assert f1.read() == f2.read()
-    os.remove(generated_outline)
+    try:
+        with open(generated_outline, "r") as f1:
+            with open(os.path.join(resources, "dummy_outline.yml"), "r") as f2:
+                assert yaml.dump(yaml.load(f1)) == yaml.dump(yaml.load(f2))
+    finally:
+        os.remove(generated_outline)
