@@ -39,13 +39,13 @@ def startEngine():
 
 
 def typeset(texfile, v):
-    os.chdir('html')
+    os.chdir("html")
     if v is True:
-        subprocess.call(['pdflatex', texfile], shell=False)
+        subprocess.call(["pdflatex", texfile], shell=False)
     else:
-        devnull = open(os.devnull, 'w')
-        subprocess.call(['pdflatex', texfile], shell=False, stdout=devnull)
+        devnull = open(os.devnull, "w")
+        subprocess.call(["pdflatex", texfile], shell=False, stdout=devnull)
 
     print("Typesetting complete (pdflatex)")
-    output_pdf = os.path.join(os.path.splitext(texfile)[0] + '.pdf')
+    output_pdf = os.path.join(os.path.splitext(texfile)[0] + ".pdf")
     return output_pdf

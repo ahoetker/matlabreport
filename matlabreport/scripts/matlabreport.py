@@ -5,17 +5,16 @@ from matlabreport.makereport import makeReport
 from matlabreport.publishmfile import publishMfile
 from matlabreport.openreport import openReport
 
+
 @click.command()
-@click.argument('outline', type=click.Path(exists=True, resolve_path=True))
-@click.argument('report_m', type=click.Path(resolve_path=True))
-@click.option('--pubformat', default='html')
-@click.option('--funcs', is_flag=True, help="Append user functions.")
-@click.option('-p', is_flag=True, help="Publish report after building.")
-@click.option('-t', is_flag=True, help="Use pdflatex to typeset report.")
-@click.option('-v', is_flag=True, help="Verbose pdflatex console output.")
-@click.option('-s', is_flag=True, help="Show published report.")
-
-
+@click.argument("outline", type=click.Path(exists=True, resolve_path=True))
+@click.argument("report_m", type=click.Path(resolve_path=True))
+@click.option("--pubformat", default="html")
+@click.option("--funcs", is_flag=True, help="Append user functions.")
+@click.option("-p", is_flag=True, help="Publish report after building.")
+@click.option("-t", is_flag=True, help="Use pdflatex to typeset report.")
+@click.option("-v", is_flag=True, help="Verbose pdflatex console output.")
+@click.option("-s", is_flag=True, help="Show published report.")
 def matlabreport(outline, report_m, pubformat, funcs, p, t, v, s):
     """
     Make a MATLAB report m-file, and optionally publish it.

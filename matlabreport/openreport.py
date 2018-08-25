@@ -18,20 +18,20 @@ def openReport(report):
     """
     file_ext = os.path.splitext(report)[1]
 
-    if file_ext == '.html':
+    if file_ext == ".html":
         openHTML(report)
-    elif file_ext == '.pdf':
+    elif file_ext == ".pdf":
         openPDF(report)
-    elif file_ext == '.xml':
+    elif file_ext == ".xml":
         openXML(report)
-    elif file_ext == '.tex':
+    elif file_ext == ".tex":
         openTEX(report)
     else:
         print("Unsupported filetype: {}".format(file_ext))
 
 
 def openHTML(report):
-    webbrowser.open('file://' + report)
+    webbrowser.open("file://" + report)
 
 
 def openPDF(report):
@@ -44,7 +44,7 @@ def openPDF(report):
     finish writing to the pdf file.
     """
     pdf_viewer = os.getenv("PDFVIEWER")
-    devnull = open(os.devnull, 'w')
+    devnull = open(os.devnull, "w")
 
     time.sleep(2)
 
@@ -52,9 +52,9 @@ def openPDF(report):
         try:
             Popen([pdf_viewer, report], stderr=devnull, stdout=devnull)
         except FileNotFoundError:
-            webbrowser.open('file://' + report)
+            webbrowser.open("file://" + report)
     else:
-        webbrowser.open('file://' + report)
+        webbrowser.open("file://" + report)
 
 
 def openXML(report):
@@ -64,9 +64,10 @@ def openXML(report):
         try:
             Popen([editor, report])
         except FileNotFoundError:
-            webbrowser.open('file://' + report)
+            webbrowser.open("file://" + report)
     else:
-        webbrowser.open('file://' + report)
+        webbrowser.open("file://" + report)
+
 
 def openTEX(report):
     editor = os.getenv("EDITOR")

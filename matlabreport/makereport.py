@@ -2,8 +2,10 @@
 
 import yaml
 
+
 class Outline(yaml.YAMLObject):
-    yaml_tag = u'!Outline'
+    yaml_tag = u"!Outline"
+
     def __init__(self, header, problems, functions, publish):
         self.header = header
         self.problems = problems
@@ -25,7 +27,7 @@ def makeReport(yaml_file, output_file, funcs):
 
     header = ""
     for txtfile in outline.header:
-        with open(txtfile, 'r') as f:
+        with open(txtfile, "r") as f:
             for line in f:
                 header += line
         header += "\n\n"
@@ -33,7 +35,7 @@ def makeReport(yaml_file, output_file, funcs):
     problems = ""
     for mfile in outline.problems:
         try:
-            with open(mfile, 'r') as f:
+            with open(mfile, "r") as f:
                 for line in f:
                     problems += line
         except FileNotFoundError:
@@ -45,17 +47,17 @@ def makeReport(yaml_file, output_file, funcs):
         try:
             functions += "%% Referenced Functions \n"
             for func in outline.functions:
-                with open(func, 'r') as f:
+                with open(func, "r") as f:
                     comment = "%% {}\n%\n".format(func)
                     for line in f:
-                        comment += ( "%   " + str(line))
+                        comment += "%   " + str(line)
                 functions += comment + "\n\n"
         except TypeError:
             print("No functions specified in {}".format(yaml_file))
 
     report = header + problems + functions
 
-    with open(output_file, 'w') as f:
+    with open(output_file, "w") as f:
         f.write(report)
 
     print("Report saved as m-file")
