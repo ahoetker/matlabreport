@@ -9,7 +9,7 @@ resources = pkg_resources.resource_filename("tests", "resources")
 
 def test_makereport():
     # define the outline markup file
-    outline_file = os.path.join(resources, "outline.yml")
+    outline_file = os.path.join(resources, "dummy_outline.yml")
     # Create the file to write report.m to
     report = os.path.join(resources, "tempreport.m")
     os.chdir(resources)
