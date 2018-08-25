@@ -13,7 +13,7 @@ class Outline(yaml.YAMLObject):
         self.functions = functions
 
 
-def makeReport(yaml_file, output_file, funcs):
+def makeReport(yaml_file, output_file, funcs, auto):
     """
     Create MATLAB report as a single m-file.
 
@@ -22,6 +22,9 @@ def makeReport(yaml_file, output_file, funcs):
     :param funcs: flag, include referenced functions from outline.
     :return: None
     """
+    if auto is True:
+        auto_outline(yaml_file)
+
     with open(yaml_file) as y:
         outline = yaml.load(y)
 
