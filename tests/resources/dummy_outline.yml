@@ -4,6 +4,8 @@ header:
 problems:
   - problem_01.m
   - problem_02.m
-funcs:
+  - problem_03.m
+  - problem_04.m
+functions:
   - fizzbuzz.m
   - logmean.m

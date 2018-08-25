@@ -11,6 +11,7 @@ setup(
     entry_points="""
         [console_scripts]
         matlabreport=matlabreport.scripts.matlabreport:matlabreport
+        autoreport=matlabreport.scripts.autoreport:autoreport
       """,
     packages=find_packages(),
     zip_safe=False,
