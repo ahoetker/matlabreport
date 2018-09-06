@@ -1,7 +1,2 @@
 click
-pyaml
-Pygments
-PyLaTeX
-pytest
 python-dateutil
-PyYAML

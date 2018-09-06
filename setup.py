@@ -7,7 +7,7 @@ setup(
     url="https://github.com/ahoetker/matlabreport",
     author="Andrew Hoetker",
     author_email="ahoetker@me.com",
-    install_requires=["Click", "pyaml"],
+    install_requires=["Click",],
     entry_points="""
         [console_scripts]
         matlabreport=matlabreport.scripts.matlabreport:matlabreport
