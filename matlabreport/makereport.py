@@ -1,42 +1,33 @@
 # makereport.py - build mfile report from yaml outline
 
-import yaml
+import json
 import os
 
 
-class Outline(yaml.YAMLObject):
-    yaml_tag = u"!Outline"
-
-    def __init__(self, header, problems, functions):
-        self.header = header
-        self.problems = problems
-        self.functions = functions
-
-
-def makeReport(yaml_file, output_file, funcs, auto):
+def makeReport(json_outline, output_file, funcs, auto):
     """
     Create MATLAB report as a single m-file.
 
-    :param yaml_file: YAML outline file for report.
+    :param json_outline: JSON file specifying layout
     :param output_file: m-file destination for finished report.
     :param funcs: flag, include referenced functions from outline.
     :return: None
     """
     if auto is True:
-        auto_outline(yaml_file)
+        auto_outline(json_outline)
 
-    with open(yaml_file) as y:
-        outline = yaml.load(y)
+    with open(json_outline) as y:
+        outline = json.load(y)
 
     header = ""
-    for txtfile in outline.header:
+    for txtfile in outline["header"]:
         with open(txtfile, "r") as f:
             for line in f:
                 header += line
         header += "\n\n"
 
     problems = ""
-    for mfile in outline.problems:
+    for mfile in outline["problems"]:
         try:
             with open(mfile, "r") as f:
                 for line in f:
@@ -49,14 +40,14 @@ def makeReport(yaml_file, output_file, funcs, auto):
     if funcs is True:
         try:
             functions += "%% Referenced Functions \n"
-            for func in outline.functions:
+            for func in outline["functions"]:
                 with open(func, "r") as f:
                     comment = "%% {}\n%\n".format(func)
                     for line in f:
                         comment += "%   " + str(line)
                 functions += comment + "\n\n"
         except TypeError:
-            print("No functions specified in {}".format(yaml_file))
+            print("No functions specified in {}".format(json_outline))
 
     report = header + problems + functions
 
@@ -93,9 +84,14 @@ def auto_outline(generated_outline):
                 referenced_functions.append(file)
     referenced_functions = sorted(list(set(referenced_functions)))
 
-    # create the Outline object and dump to yaml file
-    outline = Outline(header=header, problems=problems, functions=referenced_functions)
+
+    # dump the outline data to a JSON file
+    outline = {
+        "header": header,
+        "problems": problems,
+        "functions": referenced_functions,
+    }
     with open(generated_outline, "w") as outfile:
-        yaml.dump(outline, outfile, default_flow_style=False)
+        json.dump(outline, outfile)
 
     return None
