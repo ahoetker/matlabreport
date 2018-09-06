@@ -1,8 +1,8 @@
 import pytest
 import os
 import pkg_resources
-import yaml
-from matlabreport.makereport import Outline, makeReport, auto_outline
+import json
+from matlabreport.makereport import makeReport, auto_outline
 
 # define the resources directory
 resources = pkg_resources.resource_filename("tests", "resources")
@@ -10,7 +10,7 @@ resources = pkg_resources.resource_filename("tests", "resources")
 
 def test_makereport():
     # define the outline markup file
-    outline_file = os.path.join(resources, "dummy_outline.yml")
+    outline_file = os.path.join(resources, "dummy_outline.json")
     # Create the file to write report.m to
     report = os.path.join(resources, "tempreport.m")
     os.chdir(resources)
@@ -31,12 +31,12 @@ def test_makereport():
 
 
 def test_auto_outline():
-    generated_outline = os.path.join(resources, "generated_outline.yml")
+    generated_outline = os.path.join(resources, "generated_outline.json")
     os.chdir(resources)
     auto_outline(generated_outline)
     try:
         with open(generated_outline, "r") as f1:
-            with open(os.path.join(resources, "dummy_outline.yml"), "r") as f2:
-                assert yaml.dump(yaml.load(f1)) == yaml.dump(yaml.load(f2))
+            with open(os.path.join(resources, "dummy_outline.json"), "r") as f2:
+                assert json.load(f1) == json.load(f2)
     finally:
         os.remove(generated_outline)
