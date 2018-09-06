@@ -19,8 +19,8 @@ def autoreport(pubformat, funcs, cleanup, p, t, v, s):
     """
     Make a MATLAB report m-file, and optionally publish it.
     """
-    outline = os.path.join(".", "outline.json")
-    report_m = os.path.join(".", "report.m")
+    outline = os.path.abspath(os.path.join(".", "outline.json"))
+    report_m = os.path.abspath(os.path.join(".", "report.m"))
 
     makeReport(outline, report_m, funcs, auto=True)
 
