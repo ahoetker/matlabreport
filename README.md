@@ -6,7 +6,7 @@ Python package to automate the creation and publication of MATLAB reports.
 
 `matlabreport [OPTIONS] OUTLINE REPORT_M `
 
-where `OUTLINE` is a YAML outline file with the `!Outline` tag, and `REPORT_M`
+where `OUTLINE` is a JSON outline file, and `REPORT_M`
 is the name of the m-file to be created.
 
 Use `matlabreport --help` to see additional options.
